@@ -1,0 +1,152 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <div id="filters" class="d-flex overflow-auto">
+    <a href="/listings/filter/Trending">
+      <div class="filter">
+        <div> <i class="fa-solid fa-fire" id="item"></i> </div>
+        <p>Trending</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Rooms">
+      <div class="filter">
+        <div> <i class="fa-solid fa-bed"  id="item"></i></div>
+        <p>Rooms</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Iconic Cities">
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-city"  id="item"></i></div>
+        <p>Iconic Cities</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Mountains">
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-sun"  id="item"></i></i></div>
+        <p>Mountains</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Camping">
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"  id="item"></i></div>
+        <p>Camping</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Amazing Nature">
+      <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"  id="item"></i></div>
+        <p>Amazing Nature</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Farms">
+      <div class="filter">
+        <div><i class="fa-solid fa-tractor"  id="item"></i></div>
+        <p>Farms</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Arctic">
+      <div class="filter">
+        <div><i class="fa-solid fa-snowflake"  id="item"></i></div>
+        <p>Arctic</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Boats">
+      <div class="filter">
+        <div><i class="fa-solid fa-ship"  id="item"></i></div>
+        <p>Boats</p>
+      </div>
+    </a>
+
+    <a href="/listings/filter/Domes">
+      <div class="filter">
+        <div><i class="fa-solid fa-igloo"  id="item"></i></div>
+        <p>Domes</p>
+      </div>
+    </a>
+    <a href="/listings/filter/Caravan">
+      <div class="filter">
+        <div><i class="fa-solid fa-caravan"  id="item"></i></i></div>
+        <p>Caravan</p>
+      </div>
+    </a>
+   
+    <a href="/listings/filter/Beaches">
+      <div class="filter">
+        <div><i class="fa-solid fa-umbrella-beach"  id="item"></i></div>
+        <p>Beaches</p>
+      </div>
+    </a>
+   
+
+
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Tax Toggle for GST</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(listing of allListings) { %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col listing-card">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image" style="height: 20rem;">
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <p class="card-text" style="color: rgb(141, 0, 0);">
+              <b>
+                <%= listing.title %>
+              </b> <br>
+              &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+                <i class="tax-info">&nbsp; +18% GST</i>
+            </p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+  </div>
+
+  <script>
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click", () => {
+      let taxInfo = document.getElementsByClassName("tax-info");
+      for (info of taxInfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        } else {
+          info.style.display = "none";
+        }
+      }
+    })
+  </script>
+  <style>
+    body.dark-mode div>a>div>i{
+      background-color: black;
+      color: white;
+    }
+    body.dark-mode div>a >div>i{
+     
+      color: white;
+    }
+    body.dark-mode div p{
+     
+      color: white;
+    }
+    body.dark-mode #item{
+      color: white;
+    }
+    body .dark-mode #txt{
+      color:black ;
+    }
+  </style>
+ 
